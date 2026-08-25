@@ -1,3 +1,8 @@
+process.on('uncaughtException', (err) => {
+    console.error('CRASH LOG:', err);
+    process.exit(1);
+});
+
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -7,7 +12,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Giao diện HTML tích hợp sẵn trực tiếp bên trong mã nguồn
 const htmlContent = `
 <!DOCTYPE html>
 <html lang="vi">
